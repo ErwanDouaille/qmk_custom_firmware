@@ -29,3 +29,9 @@
 
 // this is for macOS so keyboard can work after sleep
 #define NO_USB_STARTUP_CHECK
+
+
+/* Hold ESC on start up to clear EEPROM and boot into bootloader mode */
+//located in C:\Users\userName\qmk_firmware\keyboards\gmmk\pro\config.h 
+//#define BOOTMAGIC_LITE_ROW 1
+//#define BOOTMAGIC_LITE_COLUMN 3

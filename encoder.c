@@ -148,7 +148,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 // Capslock, Scroll lock and Numlock  indicator on Left side lights.
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    rgb_matrix_set_color_all(50, 50, 50);
+    rgb_matrix_set_color_all(150, 150, 150);
     rgb_matrix_set_color(LED_ESC, RGB_YELLOW);
 
     if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {

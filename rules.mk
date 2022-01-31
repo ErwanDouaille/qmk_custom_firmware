@@ -6,5 +6,6 @@ RAW_ENABLE = no
 CONSOLE_ENABLE = yes
 DEBOUNCE_TYPE = asym_eager_defer_pk
 MOUSEKEY_ENABLE = no
+BOOTMAGIC_ENABLE = yes
 
 SRC += encoder.c
