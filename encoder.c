@@ -1,5 +1,6 @@
 #include "encoder.h"
 #include "erwand.h"
+#include "rgb_matrix_user.inc"
 
 static uint8_t state = ENCODER_DEFAULT;
 
@@ -124,12 +125,9 @@ const uint8_t LED_SIDE_LEFT[] = { LED_L1, LED_L2, LED_L3, LED_L4, LED_L5, LED_L6
 
 const uint8_t LED_SIDE_RIGHT[] = { LED_R1, LED_R2, LED_R3, LED_R4, LED_R5, LED_R6, LED_R7, LED_R8};
 
-// clang-format off
 const encoder_callback encoder_mapping[][2] = {
     [ENCODER_VOLUME] = {&volume_up, &volume_down},
 };
-
-// clang-format on
 
 void volume_up() { tap_code(KC_VOLU); }
 
@@ -148,15 +146,23 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 // Capslock, Scroll lock and Numlock  indicator on Left side lights.
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    rgb_matrix_set_color_all(150, 150, 150);
-    rgb_matrix_set_color(LED_ESC, RGB_YELLOW);
+    
+    rgb_matrix_set_color_all(50, 50, 50);
+    rgb_matrix_set_color(LED_ESC, 255,255,0);
+
+    switch(get_highest_layer(layer_state)){  // special handling per layer
+        case 1:  // on Fn layer select what the encoder does when pressed
+            rgb_matrix_set_color(LED_ESC, RGB_RED);
+            rgb_matrix_set_color(LED_E, RGB_PINK);
+            break;
+    }
 
     if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {
         for (uint8_t i = 0; i < 8; i++) {
             rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_GREEN);
             rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_GREEN);
         }
-        rgb_matrix_set_color(LED_CAPS, RGB_GREEN);
+        rgb_matrix_set_color(LED_CAPS, 0,255,0);
     }
 }
 
