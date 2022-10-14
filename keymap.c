@@ -185,20 +185,16 @@ const uint8_t LED_SIDE_RIGHT[] = { LED_R1, LED_R2, LED_R3, LED_R4, LED_R5, LED_R
 
 // Capslock, Scroll lock and Numlock  indicator on Left side lights.
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    int x = timer_elapsed(base_timer);
-    // int y = timer_elapsed(rythm_timer);
-    float time = 1000.0f;// + fabs(sin(y/30000.0f)));
-    float sinInput = fabs(sin(x/time));
-    uint8_t red = 100 + (sinInput*155);
-    rgb_matrix_set_color_all(red,0,0); //Default startup colour
+    rgb_matrix_set_color_all(RGB_RED); // Default startup colour
     rgb_matrix_set_color(LED_ESC, 255,0,0);
 
     switch(get_highest_layer(layer_state)){  // special handling per layer
         case 1:  // on Fn layer select what the encoder does when pressed
+            rgb_matrix_set_color_all(RGB_BLUE); // Default startup colour
             rgb_matrix_set_color(LED_ESC, RGB_RED);
-            rgb_matrix_set_color(LED_E, RGB_PINK);
-            rgb_matrix_set_color(LED_D, RGB_PINK);
-            rgb_matrix_set_color(LED_H, RGB_PINK);
+            rgb_matrix_set_color(LED_E, RGB_RED);
+            rgb_matrix_set_color(LED_D, RGB_RED);
+            rgb_matrix_set_color(LED_H, RGB_RED);
             break;
     }
 
@@ -216,5 +212,5 @@ void keyboard_post_init_keymap(void) {
     rythm_timer = timer_read();
     // keyboard_post_init_user() moved to userspace
     rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_set_color_all(RGB_GREEN); // Default startup colour
+    rgb_matrix_set_color_all(RGB_RED); // Default startup colour
 }
